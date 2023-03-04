@@ -1,7 +1,9 @@
 package org.example.bo;
 
-import jakarta.persistence.*;
+
 import org.example.bo.enums.TypeProduit;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "product")
@@ -9,7 +11,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column
     private String code;
     @Column
@@ -32,19 +34,13 @@ public class Product {
         this.price = price;
     }
 
-    public Product(int id, String code, String label, TypeProduit prodType, double price) {
-        this.id = id;
-        this.code = code;
-        this.label = label;
-        this.prodType = prodType;
-        this.price = price;
-    }
 
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

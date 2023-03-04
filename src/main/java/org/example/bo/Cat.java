@@ -1,7 +1,7 @@
 package org.example.bo;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name="cat")
@@ -22,10 +22,7 @@ public class Cat extends Animal{
         this.idShip = idShip;
     }
 
-    public Cat(int id, Date birthDate, String color, PetStore petStore, String idShip) {
-        super(id, birthDate, color, petStore);
-        this.idShip = idShip;
-    }
+
 
     public String getIdShip() {
         return idShip;

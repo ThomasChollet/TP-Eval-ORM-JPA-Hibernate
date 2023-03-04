@@ -1,15 +1,18 @@
 package org.example.bo;
 
-import jakarta.persistence.*;
 
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "petStore")
 public class PetStore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column
     private String name;
     @Column
@@ -19,7 +22,7 @@ public class PetStore {
     @JoinTable(name = "petstorsproduct",
             joinColumns = @JoinColumn(name = "idpetstore"),
             inverseJoinColumns = @JoinColumn(name = "idproduct"))
-    private List<Product> products = new ArrayList<>();
+    private Set<Product> products = new HashSet<>();
 
     @OneToMany
     @JoinTable(name = "petstore_animal",
@@ -35,27 +38,24 @@ public class PetStore {
     public PetStore() {
     }
 
-    public PetStore(String name,  String managerName, List<Product> products, Address address) {
+    public PetStore(String name, String managerName, Set<Product> products, Address address) {
         this.name = name;
         this.address = address;
         this.managerName = managerName;
         this.products = products;
     }
 
-    public PetStore(int id, String name, Address address, String managerName) {
-        this.id = id;
+    public PetStore(String name, Address address, String managerName) {
         this.name = name;
         this.address = address;
         this.managerName = managerName;
-        this.products = new ArrayList<>();
-        this.animals = new ArrayList<>();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,11 +75,11 @@ public class PetStore {
         this.address = address;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 

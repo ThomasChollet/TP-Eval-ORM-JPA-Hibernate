@@ -1,8 +1,7 @@
 package org.example.bo;
 
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "animal")
@@ -10,13 +9,14 @@ import java.util.Date;
 public abstract class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Long id;
     @Column
     private Date birthDate;
     @Column
     private String color;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
+    @JoinColumn(name="IDPETSTORE")
     private PetStore petStore;
 
     public Animal() {
@@ -33,18 +33,13 @@ public abstract class Animal {
         this.color = color;
     }
 
-    public Animal(int id, Date birthDate, String color, PetStore petStore) {
-        this.id = id;
-        this.birthDate = birthDate;
-        this.color = color;
-        this.petStore = petStore;
-    }
 
-    public int getId() {
+
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
